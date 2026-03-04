@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="HeadSpa">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <title>HeadSpa — Nouveau Soin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e4cc7a;
+      --gold-dark: #a68a3e;
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --bg-input: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #f5f0e8;
+      --text-muted: #8a8578;
+      --success: #4ade80;
+      --error: #f87171;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === HEADER === */
+    .header {
+      width: 100%;
+      padding: 2rem 1.5rem 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .logo-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 0.75rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.2);
+    }
+
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    .subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+    }
+
+    /* === MAIN CARD === */
+    .card {
+      width: 100%;
+      max-width: 420px;
+      padding: 1.5rem;
+      margin: 1.5rem auto;
+      flex: 1;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: var(--text);
+    }
+
+    /* === FORM === */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      background: var(--bg-input);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+    }
+
+    .form-input::placeholder {
+      color: #4a4a4a;
+    }
+
+    /* === SELECT CUSTOM === */
+    .select-wrapper {
+      position: relative;
+    }
+
+    .select-wrapper::after {
+      content: '';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid var(--text-muted);
+      pointer-events: none;
+    }
+
+    select.form-input {
+      cursor: pointer;
+      padding-right: 2.5rem;
+    }
+
+    select.form-input option {
+      background: var(--bg-card);
+      color: var(--text);
+      padding: 0.5rem;
+    }
+
+    /* === PHONE INPUT === */
+    .phone-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .phone-prefix {
+      width: 72px;
+      flex-shrink: 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-weight: 500;
+      background: var(--bg-input);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .phone-input {
+      flex: 1;
+    }
+
+    /* === BUTTON === */
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 0.75rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border: none;
+      border-radius: 12px;
+      color: #0a0a0a;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 0.02em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-submit .spinner {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 2.5px solid rgba(10, 10, 10, 0.3);
+      border-top-color: #0a0a0a;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin: 0 auto;
+    }
+
+    .btn-submit.loading .btn-text { display: none; }
+    .btn-submit.loading .spinner { display: block; }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* === SUCCESS SCREEN === */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      animation: fadeUp 0.5s ease;
+    }
+
+    .success-screen.show {
+      display: block;
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 1.5rem;
+      background: rgba(74, 222, 128, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .success-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--success);
+      margin-bottom: 0.5rem;
+    }
+
+    .success-msg {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+
+    .success-detail {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .success-detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      font-size: 0.85rem;
+    }
+
+    .success-detail-label {
+      color: var(--text-muted);
+    }
+
+    .success-detail-value {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .btn-new {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 2rem;
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      border-radius: 12px;
+      color: var(--gold);
+      font-size: 0.9rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-new:active {
+      background: rgba(201, 168, 76, 0.1);
+    }
+
+    /* === ERROR TOAST === */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #2d1515;
+      border: 1px solid var(--error);
+      color: var(--error);
+      padding: 0.75rem 1.25rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      z-index: 100;
+      transition: transform 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* === FOOTER === */
+    .footer {
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #333;
+      letter-spacing: 0.05em;
+    }
+
+    /* === FIELD ERROR === */
+    .field-error {
+      font-size: 0.75rem;
+      color: var(--error);
+      margin-top: 0.35rem;
+      display: none;
+    }
+
+    .field-error.show {
+      display: block;
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-group { animation: fadeUp 0.4s ease backwards; }
+    .form-group:nth-child(1) { animation-delay: 0.05s; }
+    .form-group:nth-child(2) { animation-delay: 0.1s; }
+    .form-group:nth-child(3) { animation-delay: 0.15s; }
+    .form-group:nth-child(4) { animation-delay: 0.2s; }
+
+    /* === RESPONSIVE SAFE AREA === */
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+      .footer { padding-bottom: calc(1rem + env(safe-area-inset-bottom)); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-icon">💆</div>
+    <div class="brand">HeadSpa</div>
+    <div class="subtitle">Espace Praticienne</div>
+  </div>
+
+  <!-- FORM -->
+  <div class="card" id="formCard">
+    <div class="card-title">Nouveau soin terminé</div>
+
+    <form id="soinForm" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="prenom">Prénom de la cliente</label>
+        <input
+          class="form-input"
+          type="text"
+          id="prenom"
+          placeholder="ex : Sophie"
+          autocomplete="given-name"
+          required
+        >
+        <div class="field-error" id="errPrenom">Ce champ est requis</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="phone">Numéro de téléphone</label>
+        <div class="phone-row">
+          <div class="phone-prefix">🇫🇷 +33</div>
+          <input
+            class="form-input phone-input"
+            type="tel"
+            id="phone"
+            placeholder="6 12 34 56 78"
+            inputmode="tel"
+            autocomplete="tel"
+            required
+          >
+        </div>
+        <div class="field-error" id="errPhone">Numéro invalide</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="soin">Type de soin</label>
+        <div class="select-wrapper">
+          <select class="form-input" id="soin" required>
+            <option value="" disabled selected>Choisir le soin…</option>
+            <option value="HeadSpa Classique">HeadSpa Classique</option>
+            <option value="HeadSpa Premium">HeadSpa Premium</option>
+            <option value="HeadSpa Détox">HeadSpa Détox</option>
+            <option value="Soin Cuir Chevelu">Soin Cuir Chevelu</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+        <div class="field-error" id="errSoin">Sélectionne un soin</div>
+      </div>
+
+      <button type="submit" class="btn-submit" id="btnSubmit">
+        <span class="btn-text">Envoyer le SMS de satisfaction</span>
+        <div class="spinner"></div>
+      </button>
+    </form>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✅</div>
+    <div class="success-title">C'est envoyé !</div>
+    <div class="success-msg">Le SMS de satisfaction sera envoyé automatiquement à la cliente.</div>
+    <div class="success-detail" id="successDetail">
+      <div class="success-detail-row">
+        <span class="success-detail-label">Cliente</span>
+        <span class="success-detail-value" id="sumPrenom">—</span>
+      </div>
+      <div class="success-detail-row">
+        <span class="success-detail-label">Téléphone</span>
+        <span class="success-detail-value" id="sumPhone">—</span>
+      </div>
+      <div class="success-detail-row">
+        <span class="success-detail-label">Soin</span>
+        <span class="success-detail-value" id="sumSoin">—</span>
+      </div>
+    </div>
+    <button class="btn-new" id="btnNew">
+      ✨ Nouvelle cliente
+    </button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">Erreur de connexion</div>
+
+  <!-- FOOTER -->
+  <div class="footer">HEADSPA — ESPACE PRO</div>
+
+  <script>
+    // === CONFIG ===
+    const N8N_FORM_URL = 'https://n8n.srv1399873.hstgr.cloud/form/headspa-soin-form';
+
+    // === DOM ===
+    const form      = document.getElementById('soinForm');
+    const formCard  = document.getElementById('formCard');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const success   = document.getElementById('successScreen');
+    const toast     = document.getElementById('toast');
+
+    // === FORMAT PHONE ===
+    function formatPhone(raw) {
+      // Remove spaces, dashes, dots
+      let num = raw.replace(/[\s\-\.]/g, '');
+      // If starts with 0, replace with +33
+      if (num.startsWith('0')) {
+        num = '+33' + num.substring(1);
+      }
+      // If doesn't start with +, add +33
+      if (!num.startsWith('+')) {
+        num = '+33' + num;
+      }
+      return num;
+    }
+
+    // === VALIDATE ===
+    function validate() {
+      let ok = true;
+      const prenom = document.getElementById('prenom');
+      const phone  = document.getElementById('phone');
+      const soin   = document.getElementById('soin');
+
+      // Prénom
+      if (!prenom.value.trim()) {
+        document.getElementById('errPrenom').classList.add('show');
+        ok = false;
+      } else {
+        document.getElementById('errPrenom').classList.remove('show');
+      }
+
+      // Phone
+      const cleaned = phone.value.replace(/[\s\-\.]/g, '');
+      const phoneRegex = /^(\+33|0)[1-9]\d{8}$/;
+      if (!phoneRegex.test(cleaned)) {
+        document.getElementById('errPhone').classList.add('show');
+        ok = false;
+      } else {
+        document.getElementById('errPhone').classList.remove('show');
+      }
+
+      // Soin
+      if (!soin.value) {
+        document.getElementById('errSoin').classList.add('show');
+        ok = false;
+      } else {
+        document.getElementById('errSoin').classList.remove('show');
+      }
+
+      return ok;
+    }
+
+    // === SHOW TOAST ===
+    function showToast(msg, duration = 3000) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), duration);
+    }
+
+    // === SUBMIT ===
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+
+      const prenom = document.getElementById('prenom').value.trim();
+      const phone  = formatPhone(document.getElementById('phone').value);
+      const soin   = document.getElementById('soin').value;
+
+      btnSubmit.classList.add('loading');
+      btnSubmit.disabled = true;
+
+      try {
+        // Submit as FormData to n8n form endpoint (same format as native form)
+        const formData = new FormData();
+        formData.append('field-0', prenom);
+        formData.append('field-1', phone);
+        formData.append('field-2', soin);
+
+        const resp = await fetch(N8N_FORM_URL, {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+
+        // Show success
+        document.getElementById('sumPrenom').textContent = prenom;
+        document.getElementById('sumPhone').textContent = phone;
+        document.getElementById('sumSoin').textContent = soin;
+
+        formCard.style.display = 'none';
+        success.classList.add('show');
+
+        // Vibrate on success (if supported)
+        if (navigator.vibrate) navigator.vibrate(100);
+
+      } catch (err) {
+        console.error('Submit error:', err);
+        showToast('Erreur de connexion. Réessaie.');
+      } finally {
+        btnSubmit.classList.remove('loading');
+        btnSubmit.disabled = false;
+      }
+    });
+
+    // === NEW CLIENT ===
+    document.getElementById('btnNew').addEventListener('click', () => {
+      form.reset();
+      success.classList.remove('show');
+      formCard.style.display = 'block';
+      document.getElementById('prenom').focus();
+    });
+
+    // === REGISTER SERVICE WORKER ===
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
