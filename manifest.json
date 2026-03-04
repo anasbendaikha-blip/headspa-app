@@ -1,11 +1,11 @@
 {
-  "name": "HeadSpa — Espace Praticienne",
-  "short_name": "HeadSpa",
+  "name": "Lana Head Spa — Espace Praticienne",
+  "short_name": "Lana HeadSpa",
   "description": "Enregistre un soin et envoie automatiquement le SMS de satisfaction.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#0a0a0a",
+  "background_color": "#d9cfc0",
+  "theme_color": "#d9cfc0",
   "orientation": "portrait",
   "icons": [
     {

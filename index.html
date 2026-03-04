@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#d9cfc0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="HeadSpa">
@@ -14,17 +14,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold: #c9a84c;
-      --gold-light: #e4cc7a;
-      --gold-dark: #a68a3e;
-      --bg: #0a0a0a;
-      --bg-card: #141414;
-      --bg-input: #1a1a1a;
-      --border: #2a2a2a;
-      --text: #f5f0e8;
-      --text-muted: #8a8578;
-      --success: #4ade80;
-      --error: #f87171;
+      --gold: #5c5347;
+      --gold-light: #7a6f62;
+      --gold-dark: #3d3630;
+      --bg: #d9cfc0;
+      --bg-card: #e8e0d4;
+      --bg-input: #f0ebe4;
+      --border: #c4b9a8;
+      --text: #3d3630;
+      --text-muted: #7a6f62;
+      --success: #4a8c5c;
+      --error: #c0564f;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -57,27 +57,22 @@
       transform: translateX(-50%);
       width: 60px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
     }
 
-    .logo-icon {
-      width: 56px;
-      height: 56px;
-      margin: 0 auto 0.75rem;
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.2);
+    .logo-img {
+      width: 140px;
+      height: auto;
+      margin: 0 auto 0.5rem;
+      border-radius: 18px;
+      filter: drop-shadow(0 2px 8px rgba(60, 54, 48, 0.12));
     }
 
     .brand {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       font-weight: 600;
-      color: var(--gold);
+      color: var(--text);
       letter-spacing: 0.05em;
     }
 
@@ -143,7 +138,7 @@
     }
 
     .form-input::placeholder {
-      color: #4a4a4a;
+      color: #a89e90;
     }
 
     /* === SELECT CUSTOM === */
@@ -171,7 +166,7 @@
     }
 
     select.form-input option {
-      background: var(--bg-card);
+      background: var(--bg-input);
       color: var(--text);
       padding: 0.5rem;
     }
@@ -206,10 +201,10 @@
       width: 100%;
       padding: 1rem;
       margin-top: 0.75rem;
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      background: var(--gold);
       border: none;
       border-radius: 12px;
-      color: #0a0a0a;
+      color: #f0ebe4;
       font-size: 1rem;
       font-weight: 600;
       font-family: 'Inter', sans-serif;
@@ -234,8 +229,8 @@
       display: none;
       width: 20px;
       height: 20px;
-      border: 2.5px solid rgba(10, 10, 10, 0.3);
-      border-top-color: #0a0a0a;
+      border: 2.5px solid rgba(240, 235, 228, 0.3);
+      border-top-color: #f0ebe4;
       border-radius: 50%;
       animation: spin 0.7s linear infinite;
       margin: 0 auto;
@@ -264,7 +259,7 @@
       width: 72px;
       height: 72px;
       margin: 0 auto 1.5rem;
-      background: rgba(74, 222, 128, 0.1);
+      background: rgba(74, 140, 92, 0.1);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -338,7 +333,7 @@
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%) translateY(100px);
-      background: #2d1515;
+      background: #f5e8e7;
       border: 1px solid var(--error);
       color: var(--error);
       padding: 0.75rem 1.25rem;
@@ -358,7 +353,7 @@
       padding: 1rem;
       text-align: center;
       font-size: 0.7rem;
-      color: #333;
+      color: var(--text-muted);
       letter-spacing: 0.05em;
     }
 
@@ -396,8 +391,7 @@
 
   <!-- HEADER -->
   <div class="header">
-    <div class="logo-icon">💆</div>
-    <div class="brand">HeadSpa</div>
+    <img src="logo.png" alt="Lana Head Spa" class="logo-img">
     <div class="subtitle">Espace Praticienne</div>
   </div>
 
